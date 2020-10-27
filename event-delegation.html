@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Event Delegation example</title>
+  <style>
+    body {
+      font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+      display: flex;
+      align-items: stretch;
+    }
+    li {
+      padding: 5px 0;
+    }
+    ul {
+      flex: 1;
+    }
+    output {
+      background: powderblue;
+      display: block;
+      font-size: 4em;
+      text-align: center;
+      flex: 3;
+    }
+  </style>
+</head>
+<body>
+
+  <ul id="dogs">
+    <li><a href="#dog1">Dog1</a></li>
+    <li><a href="#dog2">Dog2</a></li>
+    <li><a href="#dog3">Dog3</a></li>
+    <li><a href="#dog4">Dog4</a></li>
+    <li><a href="#dog5">Dog5</a></li>
+    <li><a href="#dog6">Dog6</a></li>
+    <li><a href="#dog7">Dog7</a></li>
+    <li><a href="#dog8">Dog8</a></li>
+    <li><a href="#dog9">Dog9</a></li>
+    <li><a href="#dog10">Dog10</a></li>
+  </ul>
+  
+  <output></output>
+
+  <script>
+    let output = document.querySelector('output');
+
+    document.querySelector('#dogs').
+      addEventListener('click', e => {
+        // What was clicked?
+        let t = e.target; 
+        // does it have an href?
+        if (t.href) { 
+          console.log(t.innerText); // f.e. "Dog5"  
+          output.innerHTML = t.innerText; 
+        }
+        // if the list item was clicked
+        if (t.nodeName === 'LI') { 
+          // print out the link
+          console.log(t.innerHTML);
+          output.innerHTML = t.innerHTML; 
+        }
+      e.preventDefault(); // Don't follow the links
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧱</text></svg>">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Super Simple Web Component Example</title>
+</head>
+<body>
+
+<script>
+  class halfstacknametag extends HTMLElement {
+    constructor () {
+      super();
+    }
+    static get observedAttributes() {
+      return ['text','colour'];
+    }
+    get text() {return this.hasAttribute('text');}
+    get colour() {return this.hasAttribute('colour');}
+    attributeChangedCallback() {
+      if(this.shadowRoot){
+        let tag = this.shadowRoot.querySelector('div');
+        let name = this.shadowRoot.querySelector('h2');
+        name.innerHTML = this.text ?  this.getAttribute('text') : '';
+        if (this.colour) {
+          tag.style.background = this.getAttribute('colour');
+        }
+      }
+    }
+    connectedCallback () {
+      let shadowRoot = this.attachShadow({mode: 'open'});
+      shadowRoot.innerHTML = `
+        <style>
+          div {
+            border-radius: 10px;
+            font-family: impact;
+            background: ${this.getAttribute('colour')||'firebrick'};
+            padding: 5px;
+            margin: 10px 0;
+            max-width: 40vw;
+          }
+          h1 {color: #fff;padding:5px 10px;}
+          h2 {border-radius: 10px;color: #000;background:#fff;margin:5px 10px;padding:10px}
+        </style>
+        <div>
+          <h1>Halfstack</h1>
+          <h2>${this.getAttribute('text')}</h2>
+        </div>
+      `;
+    }
+  }
+  window.customElements.define('halfstack-nametag', halfstacknametag);
+
+  let nametag = document.createElement('halfstack-nametag');
+  document.body.appendChild(nametag);
+  nametag.setAttribute('text', "Chris");
+  nametag.setAttribute('colour' ,"blue");
+
+</script>  
+
+<halfstack-nametag text="Dylan" colour="green"></halfstack-nametag>
+<halfstack-nametag text="Chris"></halfstack-nametag>
+</body>
+</html>

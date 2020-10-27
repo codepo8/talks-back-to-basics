@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Radio ruttons as menu</title>
+  <style>
+    #browsers {
+      margin: 2em;
+      display: flex;
+      column-gap: 10px;
+      align-items: stretch;
+      min-height: 50px;
+      position: relative;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    #browsers label {
+      border-radius: 10px;
+      text-align: center;
+      flex: 1;
+      line-height: 50px;
+    }
+
+    #browsers [type=radio] {
+      position: absolute;
+      left: -50vw;
+    }
+    #browsers [type=radio] + label {
+      background:grey;
+      color: #fff;
+    }
+    #browsers [type=radio]:checked + label {
+      background:darkolivegreen;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="browsers">
+    <input type="radio" checked id="r1" name="browser">
+    <label for="r1">Microsoft Edge</label>
+    <input type="radio" id="r2" name="browser">
+    <label for="r2">Firefox</label>
+    <input type="radio" id="r3" name="browser">
+    <label for="r3">Safari</label>
+    <input type="radio" id="r4" name="browser">
+    <label for="r4">Chrome</label>
+    <input type="radio" id="r5" name="browser">
+    <label for="r5">Brave</label>
+  </div>
+
+</body>
+</html>

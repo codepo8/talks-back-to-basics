@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    img {
+      width: 300px;
+      margin: 2em;
+    }
+    img[src=""] {
+      /* hide with CSS */
+      
+    }
+    p {
+      background: green;
+      margin: 20px solid;
+      min-height: 40px;
+    }
+    p:empty {
+      /* hide with CSS */
+    }
+    .fullclick p {
+      background: transparent;
+    }
+    .fullclick {
+      font-family: Arial, Helvetica, sans-serif;
+      margin: 3em 0;
+      padding: 0;
+    }
+    .fullclick a {
+      text-align: right;
+      display: block;
+    }
+    .fullclick li:focus-within {
+      background:mediumorchid;
+    }
+
+    .fullclick li {
+      list-style: none;
+      margin: .5em 0;
+      padding: 5px;
+      background: peachpuff;
+      position: relative;
+    }
+    .fullclick li a::after {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      content: '';
+    }
+
+
+  </style>
+</head>
+<body>
+
+
+  <img src="csdb-preview.gif" alt="">
+  <img src="" alt="wow">
+
+  <p>Moo</p>
+  <p></p>  
+
+<ul id="dogs">
+  <li><a href="#dog1">Dog1</a></li>
+  <li><a href="#dog2">Dog2</a></li>
+  <li><a href="#dog3">Dog3</a></li>
+  <li><a href="#dog4">Dog4</a></li>
+  <li><a href="#dog5">Dog5</a></li>
+  <li><a href="#dog6">Dog6</a></li>
+  <li><a href="#dog7">Dog7</a></li>
+  <li><a href="#dog8">Dog8</a></li>
+  <li><a href="#dog9">Dog9</a></li>
+  <li><a href="#dog10">Dog10</a></li>
+</ul>
+
+<ul class="fullclick">
+  <li>
+    <h2>Heading</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam 
+      blanditiis molestiae atque maxime nulla quoipsum obcaecati?</p>
+    <a href="#1">Link #1</a>
+  </li>
+  <li>
+    <h2>Heading</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam 
+      blanditiis molestiae atque maxime nulla quoipsum obcaecati?</p>
+    <a href="#2">Link #2</a>
+  </li>
+</ul>
+
+
+
+
+
+
+<script>
+
+  document.querySelector('#dogs').
+    addEventListener('click', e => {
+      // What was clicked?
+      let t = e.target; 
+      // does it have an href?
+      if (t.href) { 
+        console.log(t.innerText); // f.e. "Dog5"   
+      }
+      // if the list item was clicked
+      if (t.nodeName === 'LI') { 
+        // print out the link
+        console.log(t.innerHTML);
+      }
+    e.preventDefault(); // Don't follow the links
+  });
+
+</script>
+
+
+
+</body>
+</html>

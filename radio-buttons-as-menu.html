@@ -6,13 +6,18 @@
   <title>Radio ruttons as menu</title>
   <style>
     #browsers {
+      font-family: Arial, Helvetica, sans-serif;
       margin: 2em;
+      min-height: 50px;
+      /* position needed to hide the radio buttons */
+      position: relative;
+      /* 
+        align the items with 10px gap and make them 
+        use the whole space
+      */ 
       display: flex;
       column-gap: 10px;
       align-items: stretch;
-      min-height: 50px;
-      position: relative;
-      font-family: Arial, Helvetica, sans-serif;
     }
     #browsers label {
       border-radius: 10px;
@@ -20,19 +25,22 @@
       flex: 1;
       line-height: 50px;
     }
-
+    /* Don't show the radio buttons */
     #browsers [type=radio] {
       position: absolute;
       left: -50vw;
     }
+    /* Each label following a radion button… */
     #browsers [type=radio] + label {
       background:grey;
       color: #fff;
     }
+    /* Each label next to a checked radio button… */
     #browsers [type=radio]:checked + label {
       background:darkolivegreen;
       color: #fff;
     }
+    
   </style>
 </head>
 <body>

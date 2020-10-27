@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Full list click example</title>
+  <style>
+    body {
+      font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    }
+    .fullclick {
+      font-family: Arial, Helvetica, sans-serif;
+      margin: 3em 0;
+      padding: 0;
+    }
+    .fullclick a {
+      text-align: right;
+      display: block;
+    }
+    .fullclick li {
+      list-style: none;
+      margin: .5em 0;
+      padding: 5px;
+      background: peachpuff;
+      /* position needed to allow for overlay */
+      position: relative;
+    }
+    /* 
+      create an overlay after the link with the 
+      same dimensions as the list item.
+    */
+    .fullclick li a::after {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      content: '';
+    }
+
+    /* 
+      If any child element of the list has focus
+      change the background
+    */
+    .fullclick li:focus-within {
+      background:mediumorchid;
+    }
+  </style>
+</head>
+<body>
+
+  <ul class="fullclick">
+    <li>
+      <h2>Heading</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam 
+        blanditiis molestiae atque maxime nulla quoipsum obcaecati?</p>
+      <a href="#1">Link #1</a>
+    </li>
+    <li>
+      <h2>Heading</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam 
+        blanditiis molestiae atque maxime nulla quoipsum obcaecati?</p>
+      <a href="#2">Link #2</a>
+    </li>
+  </ul>
+  
+</body>
+</html>

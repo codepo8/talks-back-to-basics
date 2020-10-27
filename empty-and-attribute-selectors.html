@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Empty and attribute selectors</title>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    button {
+      display: block;
+      margin: 1em 0;
+      border: 1px solid burlywood;
+      font-family: inherit;
+    }
+
+    .message {
+        margin: 1em;
+        border: 2px solid firebrick;
+        padding:.5em 1em;
+        color: maroon;
+    }
+    .message:empty {
+      display: none;
+    }
+    /* For accessible hiding, see 
+       https://zellwk.com/blog/hide-content-accessibly/
+    */
+
+    #images {
+      display: flex;
+      column-gap: 10px;
+      align-content: space-around;
+    }
+    img {
+      width: 10%;
+      display: inline-block;
+      flex: 1;
+    }
+    img[alt=""]{
+      border: 10px solid firebrick;
+    }
+    img:not([alt]) {
+      border: 50px solid maroon;
+      animation: fixyourimage .5s step-end infinite alternate;
+    }
+    @keyframes fixyourimage { 
+        50% { border-color: firebrick; } 
+    }
+
+  </style>
+</head>
+<body>
+
+<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vitae voluptate itaque culpa consequuntur perferendis, magnam numquam est minima quisquam. Incidunt odit quia rem maxime voluptate illum eum cumque praesentium optio!</p>  
+<div class="message"></div>
+<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vitae voluptate itaque culpa consequuntur perferendis, magnam numquam est minima quisquam. Incidunt odit quia rem maxime voluptate illum eum cumque praesentium optio!</p>  
+
+<button data-text="whoa">Set message content to "woah"</button>
+<button data-text="">Set message content to empty</button>
+<button data-text="cow">Set message content to "cow"</button>
+
+<div id="images">
+  
+  <img src="https://images.dog.ceo/breeds/samoyed/n02111889_2136.jpg"
+  alt="Samoyed dog">
+  <img src="https://images.dog.ceo/breeds/basenji/n02110806_238.jpg"
+  alt="">
+  <img src="https://images.dog.ceo/breeds/basenji/n02110806_238.jpg">
+  <img src="https://images.dog.ceo/breeds/samoyed/n02111889_2136.jpg"
+  alt="Samoyed dog">
+  
+</div>
+
+<script>
+  let msg = document.querySelector('.message');
+  // yes, it is event delegation.
+  document.body.addEventListener('click', e => {
+    if (e.target.nodeName === 'BUTTON') {
+      msg.innerText = e.target.dataset.text;
+       e.preventDefault(); 
+    }
+  });
+
+</script>
+</body>
+</html>

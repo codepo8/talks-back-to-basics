@@ -10,12 +10,8 @@
       display: flex;
       align-items: stretch;
     }
-    li {
-      padding: 5px 0;
-    }
-    ul {
-      flex: 1;
-    }
+    li { padding: 5px 0; }
+    div { flex: 1; }
     output {
       background: powderblue;
       display: block;
@@ -26,7 +22,7 @@
   </style>
 </head>
 <body>
-
+  <div>
   <ul id="dogs">
     <li><a href="#dog1">Dog1</a></li>
     <li><a href="#dog2">Dog2</a></li>
@@ -39,7 +35,8 @@
     <li><a href="#dog9">Dog9</a></li>
     <li><a href="#dog10">Dog10</a></li>
   </ul>
-  
+  <button>Toggle More Dogs</button>  
+  </div> 
   <output></output>
 
   <script>
@@ -61,6 +58,28 @@
           output.innerHTML = t.innerHTML; 
         }
       e.preventDefault(); // Don't follow the links
+    });
+
+
+    
+    let button = document.querySelector('button');
+    let listitem = document.querySelectorAll('#dogs li')[1];
+    button.addEventListener('click', _ => {
+      button.toggled = !button.toggled;
+      if (button.toggled) {
+      listitem.innerHTML = `
+        <a href="#dog2">Dog2</a>
+        <ul>
+            <li><a href="#puppy2_1">Puppy 2_1</a></li>
+            <li><a href="#puppy2_2">Puppy 2_2</a></li>
+            <li><a href="#puppy2_3">Puppy 2_3</a></li>
+            <li><a href="#puppy2_4">Puppy 2_4</a></li>
+        </ul>`;
+      } else {
+        listitem.innerHTML = `
+          <a href="#dog2">Dog2</a>
+        `;
+      }
     });
   </script>
 

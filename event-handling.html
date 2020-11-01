@@ -42,23 +42,19 @@
   <script>
     let output = document.querySelector('output');
 
-    // document.querySelector('#dogs').
-    //   addEventListener('click', e => {
-    //     // What was clicked?
-    //     let t = e.target; 
-    //     // does it have an href?
-    //     if (t.href) { 
-    //       console.log(t.innerText); // f.e. "Dog5"  
-    //       output.innerHTML = t.innerText; 
-    //     }
-    //     // if the list item was clicked
-    //     if (t.nodeName === 'LI') { 
-    //       // print out the link
-    //       console.log(t.innerHTML);
-    //       output.innerHTML = t.innerHTML; 
-    //     }
-    //   e.preventDefault(); // Don't follow the links
-    // });
+    const linkclicked = (e,l) => {
+      console.log(l);
+      output.innerHTML = l.innerHTML; 
+      e.preventDefault();
+    };
+    const assignhandlers = elm => {
+      let links = document.querySelectorAll(`${elm} a`);
+      links.forEach(l => {
+        l.addEventListener('click', e => {linkclicked(e,l)});
+      });
+    }
+    assignhandlers('#dogs');
+
 
     let button = document.querySelector('button');
     let listitem = document.querySelectorAll('#dogs li')[1];
